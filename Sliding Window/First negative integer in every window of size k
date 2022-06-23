@@ -1,0 +1,71 @@
+****1.BRUTE FORCE SOLUTION****
+
+class Compute {
+    
+    public long[] printFirstNegativeInteger(long A[], int N, int K)
+    {
+        long arr[]=new long[N-K+1];
+        int l=0;
+        for(int i=0;i<N-K+1;i++)
+        {
+            for(int j=i;j<i+K;j++)
+            {
+                if(A[j]<0)
+                {
+                    arr[l]=A[j];
+                    l++;
+                    break;
+                }
+                else if(j==(i+K-1) && A[j]>0)
+                {
+                    arr[l]=0;
+                    l++;
+                }
+            }
+        }
+        return arr;
+    }
+}
+
+****SLIDING WINDOW****
+class Compute {
+    
+    public long[] printFirstNegativeInteger(long A[], int N, int K)
+    {
+        long nums[]=new long[N-K+1];
+        int i=0,j=0,l=0;
+        Queue<Long> q=new LinkedList<>();
+        while(j<N)
+        {
+            if(A[j]<0)
+            {
+                q.add(A[j]);
+            }
+            if(j-i+1<K)
+            {
+                j++;
+            }
+            else if(j-i+1==K)
+            {
+                if(q.size()==0)
+                {
+                    nums[l]=0;
+                    l++;
+                }
+                else
+                {
+                    nums[l]=q.peek();
+                    l++;
+                    if(A[i]==q.peek())
+                    {
+                        q.remove(A[i]);
+                    }
+                }
+                i++;
+                j++;
+            }
+        }
+        return nums;
+        
+    }
+}
