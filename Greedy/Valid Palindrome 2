@@ -1,0 +1,42 @@
+class Solution {
+    public boolean validPalindrome(String s) {
+        char nums[]=s.toCharArray();
+        
+        int low=0,high=nums.length-1;
+        
+        while(low<high)
+        {
+            if(nums[low]==nums[high])
+            {
+                low++;
+                high--;
+            }
+            else
+            {
+                if(isPalindrome(nums,low,high-1) || isPalindrome(nums,low+1,high))
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    public static boolean isPalindrome(char[] nums,int low,int high)
+    {
+        while(low<high)
+        {
+            if(nums[low]==nums[high])
+            {
+                low++;
+                high--;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+}
