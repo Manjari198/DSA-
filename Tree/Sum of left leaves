@@ -1,0 +1,21 @@
+class Solution {
+    public int sumOfLeftLeaves(TreeNode root) {
+        int sum[]=new int[1];
+        sumleaf(root,false,sum);
+        return sum[0];
+    }
+    public void sumleaf(TreeNode root,boolean isValid,int[] sum)
+    {
+        if(root==null)
+            return;
+        sumleaf(root.left,true,sum);
+        if(isValid==true)
+        {
+            if(root.left==null && root.right==null)
+            {
+                sum[0]=sum[0]+root.val;
+            }
+        }
+        sumleaf(root.right,false,sum);
+    }
+}
