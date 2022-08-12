@@ -1,0 +1,19 @@
+class Solution {
+    int cnt=0,res=0;
+    public int kthSmallest(TreeNode root, int k) {
+        checkInorder(root,k);
+        return res;
+    }
+    private void checkInorder(TreeNode root,int k)
+    {
+        if(root==null)
+            return;
+        checkInorder(root.left,k);
+        cnt++;
+        if(cnt==k)
+        {
+            res=root.val;
+        }
+        checkInorder(root.right,k);
+    }
+}
