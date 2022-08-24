@@ -1,0 +1,14 @@
+class Solution {
+    public int findKthLargest(int[] arr, int k) {
+        PriorityQueue<Integer> minhp=new PriorityQueue<>();
+        for(int i=0;i<arr.length;i++)
+        {
+            minhp.add(arr[i]);
+            if(minhp.size()>k)
+            {
+                minhp.poll();
+            }
+        }
+        return minhp.peek();
+    }
+}
