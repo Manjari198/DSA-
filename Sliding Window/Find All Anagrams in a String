@@ -1,0 +1,52 @@
+class Solution {
+    public List<Integer> findAnagrams(String txt, String pat) {
+        List<Integer> ans=new ArrayList<>();
+        HashMap<Character,Integer> map=new HashMap<>();
+        //int ans=0;
+        
+        for(int i=0;i<pat.length();i++)
+        {
+            map.put(pat.charAt(i),map.getOrDefault(pat.charAt(i),0)+1);
+        }
+        
+        int k=pat.length();
+        int i=0,j=0;
+        int count=map.size();
+        int size=txt.length();
+        
+        while(j<size)
+        {
+            if(map.containsKey(txt.charAt(j)))
+            {
+                map.put(txt.charAt(j),map.get(txt.charAt(j))-1);
+            }
+            if(map.get(txt.charAt(j))!=null && map.get(txt.charAt(j))==0)
+            {
+                count--;
+            }
+            if(j-i+1<k)
+            {
+                j++;
+            }
+            else if(j-i+1==k)
+            {
+                if(count==0)
+                {
+                    ans.add(i);
+                }
+                if(map.containsKey(txt.charAt(i)))
+                {
+                    map.put(txt.charAt(i),map.get(txt.charAt(i))+1);
+                    if(map.get(txt.charAt(i))!=null && map.get(txt.charAt(i))==1)
+                    {
+                        count++;
+                    }
+                }
+                i++;
+                j++;
+                
+            }
+        }
+        return ans;
+    }
+}
