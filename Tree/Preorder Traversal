@@ -52,3 +52,30 @@ class Solution {
         
     }
  }
+ 
+3. In Python:
+
+class Node:
+    
+    def __init__(self,val):
+        
+        self.val=val
+        self.left=None
+        self.right=None
+
+def preorder(root,l):
+    
+    if root==None:
+        return
+    l.append(root.val)
+    preorder(root.left,l)
+    preorder(root.right,l)
+    
+myroot=Node(1)
+myroot.left=Node(2)
+myroot.right=Node(3)
+myroot.left.left=Node(4)
+myroot.left.right=Node(5)
+ans=[]
+preorder(myroot,ans)
+print(ans)
